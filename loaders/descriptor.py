@@ -1,4 +1,5 @@
 import numpy as np
+from pathlib import Path
 
 def polar_hist_descriptor(points_xyz, r_max=80.0, Nr=20, Nphi=60, use_max_height=True):
     """
@@ -38,3 +39,26 @@ def polar_hist_descriptor(points_xyz, r_max=80.0, Nr=20, Nphi=60, use_max_height
     v = H.reshape(-1)
     v = v / (np.linalg.norm(v) + 1e-12)
     return v
+
+
+def load_descriptor_folder(desc_dir: Path):
+    """
+    Loads all .npy descriptors from a folder.
+    Returns:
+        names: list[str]
+        descs: np.ndarray (N, D)
+    """
+    paths = sorted(desc_dir.glob("*.npy"))
+    if len(paths) == 0:
+        raise RuntimeError("No .npy descriptor files found")
+
+    descs = []
+    names = []
+
+    for p in paths:
+        d = np.load(p)
+        descs.append(d)
+        names.append(p.stem)
+
+    descs = np.stack(descs, axis=0)  # (N, D)
+    return names, descs
