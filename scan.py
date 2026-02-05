@@ -63,10 +63,10 @@ if __name__ == "__main__":
     OUT_DIR = ROOT / "descriptor_results"
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    bin_file = DATASET_DIR / "1357847240132236.bin"
+    #bin_file = DATASET_DIR / "1357847240132236.bin"
 
     # get first num_of_files .bin files (sorted by timestamp)
-    NUM_OF_FILES = 50
+    NUM_OF_FILES = 1000
     bin_files = sorted(DATASET_DIR.glob("*.bin"))[:NUM_OF_FILES]
 
     print(f"Processing {len(bin_files)} LiDAR scans...")
