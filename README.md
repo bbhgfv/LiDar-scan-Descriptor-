@@ -2,6 +2,17 @@
 
 This project implements a simple LiDAR place-recognition pipeline using polar histogram descriptors and cosine similarity.
 
+## Required After Cloning
+
+After cloning the repository, **add the following files/folders manually**:
+
+.
+├── datasets/
+│ └── 2013-01-10/
+│ └── velodyne_sync/
+│ └── *.bin
+├── groundtruth_2013-01-10.csv
+
 # How to Run
 
 Place the NCLT LiDAR scans in:
